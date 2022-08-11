@@ -1,0 +1,8 @@
+aws iam create-role --role-name lambda-ex --assume-role-policy-document 
+
+aws iam attach-role-policy --role-name lambda-ex --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+aws lambda create-function --function-name go-lambda-function --zip-file fileb://main.zip --runtime go1.x --role arn:aws:iam::Enter number here:role/lambda-ex --handler main
+
+
+aws lambda invoke --function-name go-lambda-function --cli-binary-format raw-in-base64-out --payload fileb://payload.json outputfile.txt
